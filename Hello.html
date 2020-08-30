@@ -51,13 +51,12 @@
 <script>
     class FireWork {
         constructor(options) {
-            //单例模式 如果 FireWork上已经有选择好的元素了,那么我们就不需要重复进行选择了
+            
             if (FireWork.main && FireWork.main.selector === options.main) {
-                //已经经历过元素选择了，所以直接赋值
+                
                 this.main = FireWork.main.ele;
             } else {
-                //还没有进行元素选择；
-                //将需要获取的DOM放入对象中 ， 进行判断的也放入对象中
+                
                 FireWork.main = {
                     ele: document.querySelector(options.main),
                     selector: options.main
@@ -66,7 +65,7 @@
             }
             //获取烟花爆炸的方式，并放入原型中
             this.blast_type = options.blast_type;
-            //将传入的需要创建的子元素tagName放入原型中
+            
             this.ele_tagName = options.children;
             //将获取传入的鼠标点击位置
             this.x = options.x;
@@ -77,7 +76,7 @@
         init() {
                 //创建DIV
                 this.ele = this.createFireWork()
-                    //设置边界
+                //设置边界
                 this.left_max = this.main.offsetWidth - this.ele.offsetWidth;
                 this.top_max = this.main.offsetHeight - this.ele.offsetHeight;
                 //调用烟花上升的方法
@@ -87,7 +86,7 @@
         createFireWork() {
                 var ele = document.createElement(this.ele_tagName)
                 ele.className = "fire"
-                    //调用方法设置随机颜色
+                //调用方法设置随机颜色
                 this.randomColor(ele);
                 return this.main.appendChild(ele)
             }
@@ -95,7 +94,7 @@
         fireWorkUp(ele) {
                 //设置烟花上升的横坐标
                 ele.style.left = this.x + "px";
-                //调用封装好的运动JS ， 设置元素想上运动   
+                //调用封装好的运动JS 
                 animate(ele, {
                     top: this.y
                 }, function() {
@@ -111,7 +110,7 @@
                 for (var i = 0; i < 100; i++) {
                     //创建对应的DIV
                     var ele = this.createFireWork()
-                        //设置随机颜色
+                    //设置随机颜色
                     this.randomColor(ele);
                     //设置随机位置
                     ele.style.left = this.x + "px";
